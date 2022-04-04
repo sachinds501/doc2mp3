@@ -26,7 +26,7 @@ if uploaded_file is not None:
             # Extract the text of the PDF page
             page_content = page.extractText()
             # set the audio speed and volume
-            newrate = 200
+            newrate = 300
             engine.setProperty('rate', newrate)
             newvolume = 200
             engine.setProperty('volume', newvolume)
