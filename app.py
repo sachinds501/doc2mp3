@@ -19,6 +19,10 @@ if uploaded_file is not None:
         number_of_pages = read_pdf.getNumPages()
         # init function to get an engine instance for the speech synthesis
         engine = pyttsx3.init()
+
+        # if st.button('Stop'):
+        #     engine.stop()
+
         for i in range(0, number_of_pages):
             # Read the PDF page
             page = read_pdf.getPage(i)
@@ -26,13 +30,15 @@ if uploaded_file is not None:
             # Extract the text of the PDF page
             page_content = page.extractText()
             # set the audio speed and volume
-            newrate = 300
-            engine.setProperty('rate', newrate)
-            newvolume = 200
-            engine.setProperty('volume', newvolume)
+            cleaned_text = page_content.strip().replace('\n', ' ')
+            print(cleaned_text)
 
             # say method on the engine that passing input text to be spoken
-            engine.say(page_content)
+            engine.save_to_file(cleaned_text, 'test.mp3')
+            # engine.say(cleaned_text)
 
             # run and wait method to processes the voice commands.
             engine.runAndWait()
+
+
+
