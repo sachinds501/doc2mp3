@@ -6,7 +6,7 @@ import PyPDF2
 
 st.header("PDF to Audio")
 
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader("Choose a file", type=['pdf'])
 if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
 
@@ -32,9 +32,7 @@ if uploaded_file is not None:
 
             # say method on the engine that passing input text to be spoken
             engine.say(cleaned_text)
-            engine.save_to_file(cleaned_text, 'test.mp3')
+            st.write(cleaned_text)
+            engine.save_to_file(cleaned_text, 'download.mp3')
             # run and wait method to processes the voice commands.
             engine.runAndWait()
-
-
-
